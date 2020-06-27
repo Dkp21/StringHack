@@ -27,17 +27,21 @@ bool strIsPermutation(const string & s1, const string & s2)
 		++chars[str1[i]];
 	}
 
+	bool is_perm = true;
 	const char *str2 = s2.c_str();
 	for(int i = 0; i < s2.length(); ++i)
 	{
 		--chars[str2[i]];
 		if(chars[str2[i]] < 0)
 		{
-			return false;
+			is_perm = false;
+			break;
 		}
 	}
 
-	return true;
+	delete [] chars;
+
+	return is_perm;
 }
 
 int main(int argc, char **argv)
